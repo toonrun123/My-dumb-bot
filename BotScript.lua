@@ -1,7 +1,6 @@
 local Player = game.Players
 local Runservice = game:GetService("RunService")
 local PathFindingService = game:GetService("PathfindingService")
-local GameModules:Folder = game.ServerScriptService:WaitForChild("GameModules")
 local Team:Teams = game.Teams
 
 local Bot = script.Parent
@@ -12,8 +11,6 @@ local CooldownAttack = Config:WaitForChild("CooldownAttack").Value
 local AttackDistance = Config:WaitForChild("AttackDistance").Value
 local Type = "Bad"
 
-local wait = require(GameModules:WaitForChild("FastWait"))
-
 local myHuman = Bot:WaitForChild("Humanoid")
 local myRoot = Bot:WaitForChild("HumanoidRootPart")
 local head = Bot:WaitForChild("Head")
@@ -23,7 +20,6 @@ local LeftLeg = Bot:WaitForChild("Left Leg")
 local RightLeg = Bot:WaitForChild("Right Leg")
 local Animator = myHuman:WaitForChild("Animator")
 
-local AttackModule = require(game.ServerScriptService:WaitForChild("GameModules"):WaitForChild("Attack"))
 local Animations = script:WaitForChild("Animations")
 --local Attack = Animator:LoadAnimation(Animations:WaitForChild("Attack"))
 --local Attack2 = Animator:LoadAnimation(Animations:WaitForChild("Attack2"))
@@ -90,11 +86,6 @@ local function Attack(Target)
 				--Attack:Play()
 			else
 				--Attack2:Play()
-			end
-			if game.Players:GetPlayerFromCharacter(Target.Parent) then
-				AttackModule:Hit(game.Players:GetPlayerFromCharacter(Target.Parent),Damage,nil)
-			else
-				AttackModule:Hit(Target.Parent,Damage,Bot)
 			end
 			wait(CooldownAttack)
 			Debounce = false
